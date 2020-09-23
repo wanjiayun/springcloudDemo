@@ -1,0 +1,24 @@
+server:
+  port: 9200
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:10086/eureka/
+spring:
+  application:
+    name: zuul
+#zuul:    #指定自定义服务
+#  routes:
+#    feign: /feign/**      feign服务请求路径为   http://网关ip:网关port/feign/feign服务下的某个完整请求路径
+#    member: /member/**
+zuul:        #推荐这种
+  routes:
+    feign:
+      path: /f/**     #路径
+      serviceId: feign  #服务名称
+    member:
+      path: /m/**
+      serviceId: member
+#ignored-services: eureka  #忽略某个服务(无法忽略自定义的)

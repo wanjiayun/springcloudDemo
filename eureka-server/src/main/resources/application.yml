@@ -1,0 +1,13 @@
+server:
+  port: 10086
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true #集群版本得注册上让其他eureka服务发现来形成高可用
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:10086/eureka/
+spring:
+  application:
+    name: eureka-server
